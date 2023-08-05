@@ -1,0 +1,1220 @@
+<executions count='20' total='133' offset='0' max='20'>
+  <execution id='788' href='https://rundeck.outsystems.com:443/api/45/execution/788' permalink='https://rundeck.outsystems.com:443/project/Test_RB/execution/show/788' status='failed' project='Test_RB'>
+    <user>admin</user>
+    <date-started unixtime='1689757748065'>2023-07-19T09:09:08Z</date-started>
+    <date-ended unixtime='1689757754940'>2023-07-19T09:09:14Z</date-ended>
+    <job id='963f101d-f17c-47bc-878c-3e97a461124f' averageDuration='15843' href='https://rundeck.outsystems.com:443/api/45/job/963f101d-f17c-47bc-878c-3e97a461124f' permalink='https://rundeck.outsystems.com:443/project/Test_RB/job/show/963f101d-f17c-47bc-878c-3e97a461124f'>
+      <name>RabbitMQ-with-validation</name>
+      <group></group>
+      <project>Test_RB</project>
+      <description>The Script will check the service status, If status is down then it will start the service
+the validation process involves in 1. checking the status again 2. check if rabbitMQ port is listening</description>
+    </job>
+    <description>$serviceName = "RabbitMQ"
+$port = 5672
+
+# Check if the service is running
+$serviceStatus = Get-Service -Name $serviceName -ErrorAction SilentlyContinue
+
+if ($serviceStatus.Status -eq "Running") {
+    Write-Host "$serviceName service is running. Nothing to do."
+}
+else {
+    Write-Host "$serviceName service is down. Starting $serviceName and running validation."
+
+    # Start the service
+    Start-Service -Name $serviceName
+
+    Write-Host "Checking the status of $serviceName service..."
+    Start-Sleep -Seconds 20
+
+    # Get the service status
+    $serviceStatus = Get-Service -Name $serviceName
+
+    if ($serviceStatus.Status -eq "Running") {
+        Write-Host "$serviceName service is running. Checking for $serviceName port operation..."
+
+        # Check if the port is listening
+        $portStatus = Test-NetConnection -ComputerName localhost -Port $port | Select-Object -ExpandProperty TcpTestSucceeded
+
+        if ($portStatus) {
+            Write-Host "$serviceName is running on port $port. Validation complete."
+            Write-Host "$serviceName is UP and RUNNING."
+        }
+        else {
+            Write-Host "$serviceName service is Up, but not listening to port $port."
+            Write-Host "You may have to troubleshoot the issue."
+        }
+    }
+    else {
+        Write-Host "$serviceName service did not start successfully."
+    }
+}
+
+# Debugging statements
+Write-Host "Current working directory: $PWD"
+Write-Host "Script file path: $($MyInvocation.MyCommand.Path)"
+ [ps1]</description>
+    <argstring />
+    <serverUUID>73fcfedf-dd61-435c-bcca-75380aaaf998</serverUUID>
+    <failedNodes>
+      <node name='E95Y-LT16CR' />
+    </failedNodes>
+  </execution>
+  <execution id='787' href='https://rundeck.outsystems.com:443/api/45/execution/787' permalink='https://rundeck.outsystems.com:443/project/Test_RB/execution/show/787' status='succeeded' project='Test_RB'>
+    <user>admin</user>
+    <date-started unixtime='1689757653432'>2023-07-19T09:07:33Z</date-started>
+    <date-ended unixtime='1689757660370'>2023-07-19T09:07:40Z</date-ended>
+    <job id='963f101d-f17c-47bc-878c-3e97a461124f' averageDuration='15843' href='https://rundeck.outsystems.com:443/api/45/job/963f101d-f17c-47bc-878c-3e97a461124f' permalink='https://rundeck.outsystems.com:443/project/Test_RB/job/show/963f101d-f17c-47bc-878c-3e97a461124f'>
+      <name>RabbitMQ-with-validation</name>
+      <group></group>
+      <project>Test_RB</project>
+      <description>The Script will check the service status, If status is down then it will start the service
+the validation process involves in 1. checking the status again 2. check if rabbitMQ port is listening</description>
+    </job>
+    <description>$serviceName = "RabbitMQ"
+$port = 5672
+
+# Check if the service is running
+$serviceStatus = Get-Service -Name $serviceName -ErrorAction SilentlyContinue
+
+if ($serviceStatus.Status -eq "Running") {
+    Write-Host "$serviceName service is running. Nothing to do."
+}
+else {
+    Write-Host "$serviceName service is down. Starting $serviceName and running validation."
+
+    # Start the service
+    Start-Service -Name $serviceName
+
+    Write-Host "Checking the status of $serviceName service..."
+    Start-Sleep -Seconds 20
+
+    # Get the service status
+    $serviceStatus = Get-Service -Name $serviceName
+
+    if ($serviceStatus.Status -eq "Running") {
+        Write-Host "$serviceName service is running. Checking for $serviceName port operation..."
+
+        # Check if the port is listening
+        $portStatus = Test-NetConnection -ComputerName localhost -Port $port | Select-Object -ExpandProperty TcpTestSucceeded
+
+        if ($portStatus) {
+            Write-Host "$serviceName is running on port $port. Validation complete."
+            Write-Host "$serviceName is UP and RUNNING."
+        }
+        else {
+            Write-Host "$serviceName service is Up, but not listening to port $port."
+            Write-Host "You may have to troubleshoot the issue."
+        }
+    }
+    else {
+        Write-Host "$serviceName service did not start successfully."
+    }
+}
+
+# Debugging statements
+Write-Host "Current working directory: $PWD"
+Write-Host "Script file path: $($MyInvocation.MyCommand.Path)"
+ [ps1]</description>
+    <argstring />
+    <serverUUID>73fcfedf-dd61-435c-bcca-75380aaaf998</serverUUID>
+    <successfulNodes>
+      <node name='E95Y-LT16CR' />
+    </successfulNodes>
+  </execution>
+  <execution id='786' href='https://rundeck.outsystems.com:443/api/45/execution/786' permalink='https://rundeck.outsystems.com:443/project/Test_RB/execution/show/786' status='failed' project='Test_RB'>
+    <user>admin</user>
+    <date-started unixtime='1689757505752'>2023-07-19T09:05:05Z</date-started>
+    <date-ended unixtime='1689757512767'>2023-07-19T09:05:12Z</date-ended>
+    <job id='7134c10b-2bb1-44dc-a8c9-dbabc407a161' averageDuration='6665' href='https://rundeck.outsystems.com:443/api/45/job/7134c10b-2bb1-44dc-a8c9-dbabc407a161' permalink='https://rundeck.outsystems.com:443/project/Test_RB/job/show/7134c10b-2bb1-44dc-a8c9-dbabc407a161'>
+      <name>test-script</name>
+      <group></group>
+      <project>Test_RB</project>
+      <description></description>
+    </job>
+    <description>hostname [ps1]</description>
+    <argstring />
+    <serverUUID>73fcfedf-dd61-435c-bcca-75380aaaf998</serverUUID>
+    <failedNodes>
+      <node name='E95Y-DV183J' />
+    </failedNodes>
+  </execution>
+  <execution id='785' href='https://rundeck.outsystems.com:443/api/45/execution/785' permalink='https://rundeck.outsystems.com:443/project/Test_RB/execution/show/785' status='failed' project='Test_RB'>
+    <user>admin</user>
+    <date-started unixtime='1689757359827'>2023-07-19T09:02:39Z</date-started>
+    <date-ended unixtime='1689757367310'>2023-07-19T09:02:47Z</date-ended>
+    <job id='963f101d-f17c-47bc-878c-3e97a461124f' averageDuration='15843' href='https://rundeck.outsystems.com:443/api/45/job/963f101d-f17c-47bc-878c-3e97a461124f' permalink='https://rundeck.outsystems.com:443/project/Test_RB/job/show/963f101d-f17c-47bc-878c-3e97a461124f'>
+      <name>RabbitMQ-with-validation</name>
+      <group></group>
+      <project>Test_RB</project>
+      <description>The Script will check the service status, If status is down then it will start the service
+the validation process involves in 1. checking the status again 2. check if rabbitMQ port is listening</description>
+    </job>
+    <description>$serviceName = "RabbitMQ"
+$port = 5672
+
+# Check if the service is running
+$serviceStatus = Get-Service -Name $serviceName -ErrorAction SilentlyContinue
+
+if ($serviceStatus.Status -eq "Running") {
+    Write-Host "$serviceName service is running. Nothing to do."
+}
+else {
+    Write-Host "$serviceName service is down. Starting $serviceName and running validation."
+
+    # Start the service
+    Start-Service -Name $serviceName
+
+    Write-Host "Checking the status of $serviceName service..."
+    Start-Sleep -Seconds 20
+
+    # Get the service status
+    $serviceStatus = Get-Service -Name $serviceName
+
+    if ($serviceStatus.Status -eq "Running") {
+        Write-Host "$serviceName service is running. Checking for $serviceName port operation..."
+
+        # Check if the port is listening
+        $portStatus = Test-NetConnection -ComputerName localhost -Port $port | Select-Object -ExpandProperty TcpTestSucceeded
+
+        if ($portStatus) {
+            Write-Host "$serviceName is running on port $port. Validation complete."
+            Write-Host "$serviceName is UP and RUNNING."
+        }
+        else {
+            Write-Host "$serviceName service is Up, but not listening to port $port."
+            Write-Host "You may have to troubleshoot the issue."
+        }
+    }
+    else {
+        Write-Host "$serviceName service did not start successfully."
+    }
+}
+
+# Debugging statements
+Write-Host "Current working directory: $PWD"
+Write-Host "Script file path: $($MyInvocation.MyCommand.Path)"
+ [ps1]</description>
+    <argstring />
+    <serverUUID>73fcfedf-dd61-435c-bcca-75380aaaf998</serverUUID>
+    <failedNodes>
+      <node name='E95Y-DV183J' />
+    </failedNodes>
+  </execution>
+  <execution id='784' href='https://rundeck.outsystems.com:443/api/45/execution/784' permalink='https://rundeck.outsystems.com:443/project/Test_RB/execution/show/784' status='succeeded' project='Test_RB'>
+    <user>admin</user>
+    <date-started unixtime='1689691772616'>2023-07-18T14:49:32Z</date-started>
+    <date-ended unixtime='1689691786058'>2023-07-18T14:49:46Z</date-ended>
+    <job id='963f101d-f17c-47bc-878c-3e97a461124f' averageDuration='15843' href='https://rundeck.outsystems.com:443/api/45/job/963f101d-f17c-47bc-878c-3e97a461124f' permalink='https://rundeck.outsystems.com:443/project/Test_RB/job/show/963f101d-f17c-47bc-878c-3e97a461124f'>
+      <name>RabbitMQ-with-validation</name>
+      <group></group>
+      <project>Test_RB</project>
+      <description>The Script will check the service status, If status is down then it will start the service
+the validation process involves in 1. checking the status again 2. check if rabbitMQ port is listening</description>
+    </job>
+    <description>$serviceName = "RabbitMQ"
+$port = 5672
+
+# Check if the service is running
+$serviceStatus = Get-Service -Name $serviceName -ErrorAction SilentlyContinue
+
+if ($serviceStatus.Status -eq "Running") {
+    Write-Host "$serviceName service is running. Nothing to do."
+}
+else {
+    Write-Host "$serviceName service is down. Starting $serviceName and running validation."
+
+    # Start the service
+    Start-Service -Name $serviceName
+
+    Write-Host "Checking the status of $serviceName service..."
+    Start-Sleep -Seconds 20
+
+    # Get the service status
+    $serviceStatus = Get-Service -Name $serviceName
+
+    if ($serviceStatus.Status -eq "Running") {
+        Write-Host "$serviceName service is running. Checking for $serviceName port operation..."
+
+        # Check if the port is listening
+        $portStatus = Test-NetConnection -ComputerName localhost -Port $port | Select-Object -ExpandProperty TcpTestSucceeded
+
+        if ($portStatus) {
+            Write-Host "$serviceName is running on port $port. Validation complete."
+            Write-Host "$serviceName is UP and RUNNING."
+        }
+        else {
+            Write-Host "$serviceName service is Up, but not listening to port $port."
+            Write-Host "You may have to troubleshoot the issue."
+        }
+    }
+    else {
+        Write-Host "$serviceName service did not start successfully."
+    }
+}
+
+# Debugging statements
+Write-Host "Current working directory: $PWD"
+Write-Host "Script file path: $($MyInvocation.MyCommand.Path)"
+ [ps1]</description>
+    <argstring />
+    <serverUUID>73fcfedf-dd61-435c-bcca-75380aaaf998</serverUUID>
+    <successfulNodes>
+      <node name='E95Y-LT16CR' />
+      <node name='E95Y-DV16CS' />
+    </successfulNodes>
+  </execution>
+  <execution id='783' href='https://rundeck.outsystems.com:443/api/45/execution/783' permalink='https://rundeck.outsystems.com:443/project/Test_RB/execution/show/783' status='failed' project='Test_RB'>
+    <user>admin</user>
+    <date-started unixtime='1689691374220'>2023-07-18T14:42:54Z</date-started>
+    <date-ended unixtime='1689691387636'>2023-07-18T14:43:07Z</date-ended>
+    <job id='963f101d-f17c-47bc-878c-3e97a461124f' averageDuration='15843' href='https://rundeck.outsystems.com:443/api/45/job/963f101d-f17c-47bc-878c-3e97a461124f' permalink='https://rundeck.outsystems.com:443/project/Test_RB/job/show/963f101d-f17c-47bc-878c-3e97a461124f'>
+      <name>RabbitMQ-with-validation</name>
+      <group></group>
+      <project>Test_RB</project>
+      <description>The Script will check the service status, If status is down then it will start the service
+the validation process involves in 1. checking the status again 2. check if rabbitMQ port is listening</description>
+    </job>
+    <description>$serviceName = "RabbitMQ"
+$port = 5672
+
+# Check if the service is running
+$serviceStatus = Get-Service -Name $serviceName -ErrorAction SilentlyContinue
+
+if ($serviceStatus.Status -eq "Running") {
+    Write-Host "$serviceName service is running. Nothing to do."
+}
+else {
+    Write-Host "$serviceName service is down. Starting $serviceName and running validation."
+
+    # Start the service
+    Start-Service -Name $serviceName
+
+    Write-Host "Checking the status of $serviceName service..."
+    Start-Sleep -Seconds 20
+
+    # Get the service status
+    $serviceStatus = Get-Service -Name $serviceName
+
+    if ($serviceStatus.Status -eq "Running") {
+        Write-Host "$serviceName service is running. Checking for $serviceName port operation..."
+
+        # Check if the port is listening
+        $portStatus = Test-NetConnection -ComputerName localhost -Port $port | Select-Object -ExpandProperty TcpTestSucceeded
+
+        if ($portStatus) {
+            Write-Host "$serviceName is running on port $port. Validation complete."
+            Write-Host "$serviceName is UP and RUNNING."
+        }
+        else {
+            Write-Host "$serviceName service is Up, but not listening to port $port."
+            Write-Host "You may have to troubleshoot the issue."
+        }
+    }
+    else {
+        Write-Host "$serviceName service did not start successfully."
+    }
+}
+
+# Debugging statements
+Write-Host "Current working directory: $PWD"
+Write-Host "Script file path: $($MyInvocation.MyCommand.Path)"
+ [ps1]</description>
+    <argstring />
+    <serverUUID>73fcfedf-dd61-435c-bcca-75380aaaf998</serverUUID>
+    <successfulNodes>
+      <node name='E95Y-DV16CS' />
+    </successfulNodes>
+    <failedNodes>
+      <node name='E95Y-LT16CR' />
+    </failedNodes>
+  </execution>
+  <execution id='782' href='https://rundeck.outsystems.com:443/api/45/execution/782' permalink='https://rundeck.outsystems.com:443/project/Test_RB/execution/show/782' status='succeeded' project='Test_RB'>
+    <user>admin</user>
+    <date-started unixtime='1689691292128'>2023-07-18T14:41:32Z</date-started>
+    <date-ended unixtime='1689691303320'>2023-07-18T14:41:43Z</date-ended>
+    <job id='8e1908ed-c415-4514-86b3-89cfaf17c9c9' averageDuration='10635' href='https://rundeck.outsystems.com:443/api/45/job/8e1908ed-c415-4514-86b3-89cfaf17c9c9' permalink='https://rundeck.outsystems.com:443/project/Test_RB/job/show/8e1908ed-c415-4514-86b3-89cfaf17c9c9'>
+      <name>hostname-ssm</name>
+      <group></group>
+      <project>Test_RB</project>
+      <description></description>
+    </job>
+    <description>hostname</description>
+    <argstring />
+    <serverUUID>73fcfedf-dd61-435c-bcca-75380aaaf998</serverUUID>
+    <successfulNodes>
+      <node name='E95Y-LT16CR' />
+      <node name='E95Y-DV16CS' />
+    </successfulNodes>
+  </execution>
+  <execution id='780' href='https://rundeck.outsystems.com:443/api/45/execution/780' permalink='https://rundeck.outsystems.com:443/project/Test_RB/execution/show/780' status='succeeded' project='Test_RB'>
+    <user>Filipe Seixeira</user>
+    <date-started unixtime='1689235585299'>2023-07-13T08:06:25Z</date-started>
+    <date-ended unixtime='1689235592235'>2023-07-13T08:06:32Z</date-ended>
+    <job id='963f101d-f17c-47bc-878c-3e97a461124f' averageDuration='15843' href='https://rundeck.outsystems.com:443/api/45/job/963f101d-f17c-47bc-878c-3e97a461124f' permalink='https://rundeck.outsystems.com:443/project/Test_RB/job/show/963f101d-f17c-47bc-878c-3e97a461124f'>
+      <name>RabbitMQ-with-validation</name>
+      <group></group>
+      <project>Test_RB</project>
+      <description>The Script will check the service status, If status is down then it will start the service
+the validation process involves in 1. checking the status again 2. check if rabbitMQ port is listening</description>
+    </job>
+    <description>$serviceName = "RabbitMQ"
+$port = 5672
+
+# Check if the service is running
+$serviceStatus = Get-Service -Name $serviceName -ErrorAction SilentlyContinue
+
+if ($serviceStatus.Status -eq "Running") {
+    Write-Host "$serviceName service is running. Nothing to do."
+}
+else {
+    Write-Host "$serviceName service is down. Starting $serviceName and running validation."
+
+    # Start the service
+    Start-Service -Name $serviceName
+
+    Write-Host "Checking the status of $serviceName service..."
+    Start-Sleep -Seconds 20
+
+    # Get the service status
+    $serviceStatus = Get-Service -Name $serviceName
+
+    if ($serviceStatus.Status -eq "Running") {
+        Write-Host "$serviceName service is running. Checking for $serviceName port operation..."
+
+        # Check if the port is listening
+        $portStatus = Test-NetConnection -ComputerName localhost -Port $port | Select-Object -ExpandProperty TcpTestSucceeded
+
+        if ($portStatus) {
+            Write-Host "$serviceName is running on port $port. Validation complete."
+            Write-Host "$serviceName is UP and RUNNING."
+        }
+        else {
+            Write-Host "$serviceName service is Up, but not listening to port $port."
+            Write-Host "You may have to troubleshoot the issue."
+        }
+    }
+    else {
+        Write-Host "$serviceName service did not start successfully."
+    }
+}
+
+# Debugging statements
+Write-Host "Current working directory: $PWD"
+Write-Host "Script file path: $($MyInvocation.MyCommand.Path)"
+ [ps1]</description>
+    <argstring />
+    <serverUUID>73fcfedf-dd61-435c-bcca-75380aaaf998</serverUUID>
+    <successfulNodes>
+      <node name='E95Y-DV16CS' />
+    </successfulNodes>
+  </execution>
+  <execution id='779' href='https://rundeck.outsystems.com:443/api/45/execution/779' permalink='https://rundeck.outsystems.com:443/project/Test_RB/execution/show/779' status='succeeded' project='Test_RB'>
+    <user>Filipe Seixeira</user>
+    <date-started unixtime='1689234986845'>2023-07-13T07:56:26Z</date-started>
+    <date-ended unixtime='1689234996215'>2023-07-13T07:56:36Z</date-ended>
+    <job id='963f101d-f17c-47bc-878c-3e97a461124f' averageDuration='15843' href='https://rundeck.outsystems.com:443/api/45/job/963f101d-f17c-47bc-878c-3e97a461124f' permalink='https://rundeck.outsystems.com:443/project/Test_RB/job/show/963f101d-f17c-47bc-878c-3e97a461124f'>
+      <name>RabbitMQ-with-validation</name>
+      <group></group>
+      <project>Test_RB</project>
+      <description>The Script will check the service status, If status is down then it will start the service
+the validation process involves in 1. checking the status again 2. check if rabbitMQ port is listening</description>
+    </job>
+    <description>$serviceName = "RabbitMQ"
+$port = 5672
+
+# Check if the service is running
+$serviceStatus = Get-Service -Name $serviceName -ErrorAction SilentlyContinue
+
+if ($serviceStatus.Status -eq "Running") {
+    Write-Host "$serviceName service is running. Nothing to do."
+}
+else {
+    Write-Host "$serviceName service is down. Starting $serviceName and running validation."
+
+    # Start the service
+    Start-Service -Name $serviceName
+
+    Write-Host "Checking the status of $serviceName service..."
+    Start-Sleep -Seconds 20
+
+    # Get the service status
+    $serviceStatus = Get-Service -Name $serviceName
+
+    if ($serviceStatus.Status -eq "Running") {
+        Write-Host "$serviceName service is running. Checking for $serviceName port operation..."
+
+        # Check if the port is listening
+        $portStatus = Test-NetConnection -ComputerName localhost -Port $port | Select-Object -ExpandProperty TcpTestSucceeded
+
+        if ($portStatus) {
+            Write-Host "$serviceName is running on port $port. Validation complete."
+            Write-Host "$serviceName is UP and RUNNING."
+        }
+        else {
+            Write-Host "$serviceName service is Up, but not listening to port $port."
+            Write-Host "You may have to troubleshoot the issue."
+        }
+    }
+    else {
+        Write-Host "$serviceName service did not start successfully."
+    }
+}
+
+# Debugging statements
+Write-Host "Current working directory: $PWD"
+Write-Host "Script file path: $($MyInvocation.MyCommand.Path)"
+ [ps1]</description>
+    <argstring />
+    <serverUUID>73fcfedf-dd61-435c-bcca-75380aaaf998</serverUUID>
+    <successfulNodes>
+      <node name='E95Y-DV16CS' />
+    </successfulNodes>
+  </execution>
+  <execution id='778' href='https://rundeck.outsystems.com:443/api/45/execution/778' permalink='https://rundeck.outsystems.com:443/project/Test_RB/execution/show/778' status='succeeded' project='Test_RB'>
+    <user>Filipe Seixeira</user>
+    <date-started unixtime='1689068541499'>2023-07-11T09:42:21Z</date-started>
+    <date-ended unixtime='1689068572040'>2023-07-11T09:42:52Z</date-ended>
+    <job id='963f101d-f17c-47bc-878c-3e97a461124f' averageDuration='15843' href='https://rundeck.outsystems.com:443/api/45/job/963f101d-f17c-47bc-878c-3e97a461124f' permalink='https://rundeck.outsystems.com:443/project/Test_RB/job/show/963f101d-f17c-47bc-878c-3e97a461124f'>
+      <name>RabbitMQ-with-validation</name>
+      <group></group>
+      <project>Test_RB</project>
+      <description>The Script will check the service status, If status is down then it will start the service
+the validation process involves in 1. checking the status again 2. check if rabbitMQ port is listening</description>
+    </job>
+    <description>$serviceName = "RabbitMQ"
+$port = 5672
+
+# Check if the service is running
+$serviceStatus = Get-Service -Name $serviceName -ErrorAction SilentlyContinue
+
+if ($serviceStatus.Status -eq "Running") {
+    Write-Host "$serviceName service is running. Nothing to do."
+}
+else {
+    Write-Host "$serviceName service is down. Starting $serviceName and running validation."
+
+    # Start the service
+    Start-Service -Name $serviceName
+
+    Write-Host "Checking the status of $serviceName service..."
+    Start-Sleep -Seconds 20
+
+    # Get the service status
+    $serviceStatus = Get-Service -Name $serviceName
+
+    if ($serviceStatus.Status -eq "Running") {
+        Write-Host "$serviceName service is running. Checking for $serviceName port operation..."
+
+        # Check if the port is listening
+        $portStatus = Test-NetConnection -ComputerName localhost -Port $port | Select-Object -ExpandProperty TcpTestSucceeded
+
+        if ($portStatus) {
+            Write-Host "$serviceName is running on port $port. Validation complete."
+            Write-Host "$serviceName is UP and RUNNING."
+        }
+        else {
+            Write-Host "$serviceName service is Up, but not listening to port $port."
+            Write-Host "You may have to troubleshoot the issue."
+        }
+    }
+    else {
+        Write-Host "$serviceName service did not start successfully."
+    }
+}
+
+# Debugging statements
+Write-Host "Current working directory: $PWD"
+Write-Host "Script file path: $($MyInvocation.MyCommand.Path)"
+ [ps1]</description>
+    <argstring />
+    <serverUUID>73fcfedf-dd61-435c-bcca-75380aaaf998</serverUUID>
+    <successfulNodes>
+      <node name='E95Y-DV16CS' />
+    </successfulNodes>
+  </execution>
+  <execution id='777' href='https://rundeck.outsystems.com:443/api/45/execution/777' permalink='https://rundeck.outsystems.com:443/project/Test_RB/execution/show/777' status='succeeded' project='Test_RB'>
+    <user>Filipe Seixeira</user>
+    <date-started unixtime='1689062140862'>2023-07-11T07:55:40Z</date-started>
+    <date-ended unixtime='1689062173804'>2023-07-11T07:56:13Z</date-ended>
+    <job id='963f101d-f17c-47bc-878c-3e97a461124f' averageDuration='15843' href='https://rundeck.outsystems.com:443/api/45/job/963f101d-f17c-47bc-878c-3e97a461124f' permalink='https://rundeck.outsystems.com:443/project/Test_RB/job/show/963f101d-f17c-47bc-878c-3e97a461124f'>
+      <name>RabbitMQ-with-validation</name>
+      <group></group>
+      <project>Test_RB</project>
+      <description>The Script will check the service status, If status is down then it will start the service
+the validation process involves in 1. checking the status again 2. check if rabbitMQ port is listening</description>
+    </job>
+    <description>$serviceName = "RabbitMQ"
+$port = 5672
+
+# Check if the service is running
+$serviceStatus = Get-Service -Name $serviceName -ErrorAction SilentlyContinue
+
+if ($serviceStatus.Status -eq "Running") {
+    Write-Host "$serviceName service is running. Nothing to do."
+}
+else {
+    Write-Host "$serviceName service is down. Starting $serviceName and running validation."
+
+    # Start the service
+    Start-Service -Name $serviceName
+
+    Write-Host "Checking the status of $serviceName service..."
+    Start-Sleep -Seconds 20
+
+    # Get the service status
+    $serviceStatus = Get-Service -Name $serviceName
+
+    if ($serviceStatus.Status -eq "Running") {
+        Write-Host "$serviceName service is running. Checking for $serviceName port operation..."
+
+        # Check if the port is listening
+        $portStatus = Test-NetConnection -ComputerName localhost -Port $port | Select-Object -ExpandProperty TcpTestSucceeded
+
+        if ($portStatus) {
+            Write-Host "$serviceName is running on port $port. Validation complete."
+            Write-Host "$serviceName is UP and RUNNING."
+        }
+        else {
+            Write-Host "$serviceName service is Up, but not listening to port $port."
+            Write-Host "You may have to troubleshoot the issue."
+        }
+    }
+    else {
+        Write-Host "$serviceName service did not start successfully."
+    }
+}
+
+# Debugging statements
+Write-Host "Current working directory: $PWD"
+Write-Host "Script file path: $($MyInvocation.MyCommand.Path)"
+ [ps1]</description>
+    <argstring />
+    <serverUUID>73fcfedf-dd61-435c-bcca-75380aaaf998</serverUUID>
+    <successfulNodes>
+      <node name='E95Y-DV16CS' />
+    </successfulNodes>
+  </execution>
+  <execution id='776' href='https://rundeck.outsystems.com:443/api/45/execution/776' permalink='https://rundeck.outsystems.com:443/project/Test_RB/execution/show/776' status='succeeded' project='Test_RB'>
+    <user>Shashank K B</user>
+    <date-started unixtime='1689061955569'>2023-07-11T07:52:35Z</date-started>
+    <date-ended unixtime='1689062025415'>2023-07-11T07:53:45Z</date-ended>
+    <job id='3b7a2013-3995-4c93-ae11-9e6f740d4a49' averageDuration='37384' href='https://rundeck.outsystems.com:443/api/45/job/3b7a2013-3995-4c93-ae11-9e6f740d4a49' permalink='https://rundeck.outsystems.com:443/project/Test_RB/job/show/3b7a2013-3995-4c93-ae11-9e6f740d4a49'>
+      <name>High CPU - mitigation and analysis</name>
+      <group></group>
+      <project>Test_RB</project>
+      <description></description>
+    </job>
+    <description>hostname [... 3 steps]</description>
+    <argstring />
+    <serverUUID>73fcfedf-dd61-435c-bcca-75380aaaf998</serverUUID>
+    <successfulNodes>
+      <node name='E95Y-LT16CR' />
+      <node name='ip-10-19-0-9.ec2.internal' />
+    </successfulNodes>
+  </execution>
+  <execution id='775' href='https://rundeck.outsystems.com:443/api/45/execution/775' permalink='https://rundeck.outsystems.com:443/project/Test_RB/execution/show/775' status='succeeded' project='Test_RB'>
+    <user>Shashank K B</user>
+    <date-started unixtime='1689060846800'>2023-07-11T07:34:06Z</date-started>
+    <date-ended unixtime='1689060917130'>2023-07-11T07:35:17Z</date-ended>
+    <job id='3b7a2013-3995-4c93-ae11-9e6f740d4a49' averageDuration='37384' href='https://rundeck.outsystems.com:443/api/45/job/3b7a2013-3995-4c93-ae11-9e6f740d4a49' permalink='https://rundeck.outsystems.com:443/project/Test_RB/job/show/3b7a2013-3995-4c93-ae11-9e6f740d4a49'>
+      <name>High CPU - mitigation and analysis</name>
+      <group></group>
+      <project>Test_RB</project>
+      <description></description>
+    </job>
+    <description>hostname [... 3 steps]</description>
+    <argstring />
+    <serverUUID>73fcfedf-dd61-435c-bcca-75380aaaf998</serverUUID>
+    <successfulNodes>
+      <node name='E95Y-LT16CR' />
+      <node name='ip-10-19-0-9.ec2.internal' />
+    </successfulNodes>
+  </execution>
+  <execution id='774' href='https://rundeck.outsystems.com:443/api/45/execution/774' permalink='https://rundeck.outsystems.com:443/project/Test_RB/execution/show/774' status='succeeded' project='Test_RB'>
+    <user>Shashank K B</user>
+    <date-started unixtime='1689059375973'>2023-07-11T07:09:35Z</date-started>
+    <date-ended unixtime='1689059435712'>2023-07-11T07:10:35Z</date-ended>
+    <job id='3b7a2013-3995-4c93-ae11-9e6f740d4a49' averageDuration='37384' href='https://rundeck.outsystems.com:443/api/45/job/3b7a2013-3995-4c93-ae11-9e6f740d4a49' permalink='https://rundeck.outsystems.com:443/project/Test_RB/job/show/3b7a2013-3995-4c93-ae11-9e6f740d4a49'>
+      <name>High CPU - mitigation and analysis</name>
+      <group></group>
+      <project>Test_RB</project>
+      <description></description>
+    </job>
+    <description>$UtilizationSum = 0
+
+for ($i = 1; $i -le 10; $i++) {
+    $CPU = Get-CimInstance win32_processor
+    $UtilizationSum += $CPU.LoadPercentage
+    Start-Sleep -Seconds 1
+}
+
+$AverageUtilization = $UtilizationSum / 10
+
+Write-Output "Current average CPU utilization is: $($AverageUtilization)%"
+
+# Get top 5 processes consuming highest CPU resources
+$TopProcesses = Get-Counter '\Process(*)\% Processor Time' -ErrorAction SilentlyContinue |
+    Select-Object -ExpandProperty CounterSamples |
+    Select-Object -Property InstanceName, CookedValue |
+    Sort-Object -Property CookedValue -Descending |
+    Select-Object -First 5
+
+# Get the total CPU usage
+$totalCpu = $TopProcesses | Where-Object { $_.InstanceName -eq "_total" } | ForEach-Object { $_.CookedValue }
+
+# Get the process with highest CPU usage (excluding _total and idle)
+$TopProcess = $TopProcesses | Where-Object { $_.InstanceName -ne "_total" -and $_.InstanceName -ne "idle" } | Select-Object -First 1
+
+# Calculate the percentage of total CPU usage for the top process
+$TopProcessCpuPercentage = $TopProcess.CookedValue / $totalCpu * 100
+
+# Print the process with highest CPU usage
+Write-Output "Highest consuming CPU is $($TopProcess.InstanceName) with $($TopProcessCpuPercentage)% of total CPU, you might need to optimize this process."
+
+# Process names to wait for completion
+$processList = @("MsMpEng", "process_name")
+
+# Take actions based on the process consuming the highest CPU
+if ($TopProcess.InstanceName -eq "w3wp") { # IIS Worker Process
+    # Recycle IIS application pools with name starting Outsystem
+    Import-Module WebAdministration
+    Get-ChildItem IIS:\AppPools | Where-Object { $_.Name -like "Outsystem*" } | ForEach-Object {
+        $_ | Recycle-WebAppPool
+        Write-Output "Recycled IIS application pool: $($_.Name)"
+    }
+}
+elseif ($processList -contains $TopProcess.InstanceName) {
+    Write-Output "$($TopProcess.InstanceName) is running, wait until it's complete"
+}
+else {
+    # Print the message
+    Write-Output "Looks like a customer application is running, fetching historical data. Redirecting to get_monsys_report.py"
+
+    # Call the Python script get_monsys_report.py
+    # &amp; python get_monsys_report.py
+} [ps1] [... 2 steps]</description>
+    <argstring />
+    <serverUUID>73fcfedf-dd61-435c-bcca-75380aaaf998</serverUUID>
+    <successfulNodes>
+      <node name='E95Y-LT16CR' />
+      <node name='ip-10-19-0-9.ec2.internal' />
+    </successfulNodes>
+  </execution>
+  <execution id='773' href='https://rundeck.outsystems.com:443/api/45/execution/773' permalink='https://rundeck.outsystems.com:443/project/Test_RB/execution/show/773' status='failed' project='Test_RB'>
+    <user>Shashank K B</user>
+    <date-started unixtime='1689059215130'>2023-07-11T07:06:55Z</date-started>
+    <date-ended unixtime='1689059284171'>2023-07-11T07:08:04Z</date-ended>
+    <job id='3b7a2013-3995-4c93-ae11-9e6f740d4a49' averageDuration='37384' href='https://rundeck.outsystems.com:443/api/45/job/3b7a2013-3995-4c93-ae11-9e6f740d4a49' permalink='https://rundeck.outsystems.com:443/project/Test_RB/job/show/3b7a2013-3995-4c93-ae11-9e6f740d4a49'>
+      <name>High CPU - mitigation and analysis</name>
+      <group></group>
+      <project>Test_RB</project>
+      <description></description>
+    </job>
+    <description>$UtilizationSum = 0
+
+for ($i = 1; $i -le 10; $i++) {
+    $CPU = Get-CimInstance win32_processor
+    $UtilizationSum += $CPU.LoadPercentage
+    Start-Sleep -Seconds 1
+}
+
+$AverageUtilization = $UtilizationSum / 10
+
+Write-Output "Current average CPU utilization is: $($AverageUtilization)%"
+
+# Get top 5 processes consuming highest CPU resources
+$TopProcesses = Get-Counter '\Process(*)\% Processor Time' -ErrorAction SilentlyContinue |
+    Select-Object -ExpandProperty CounterSamples |
+    Select-Object -Property InstanceName, CookedValue |
+    Sort-Object -Property CookedValue -Descending |
+    Select-Object -First 5
+
+# Get the total CPU usage
+$totalCpu = $TopProcesses | Where-Object { $_.InstanceName -eq "_total" } | ForEach-Object { $_.CookedValue }
+
+# Get the process with highest CPU usage (excluding _total and idle)
+$TopProcess = $TopProcesses | Where-Object { $_.InstanceName -ne "_total" -and $_.InstanceName -ne "idle" } | Select-Object -First 1
+
+# Calculate the percentage of total CPU usage for the top process
+$TopProcessCpuPercentage = $TopProcess.CookedValue / $totalCpu * 100
+
+# Print the process with highest CPU usage
+Write-Output "Highest consuming CPU is $($TopProcess.InstanceName) with $($TopProcessCpuPercentage)% of total CPU, you might need to optimize this process."
+
+# Process names to wait for completion
+$processList = @("MsMpEng", "process_name")
+
+# Take actions based on the process consuming the highest CPU
+if ($TopProcess.InstanceName -eq "w3wp") { # IIS Worker Process
+    # Recycle IIS application pools with name starting Outsystem
+    Import-Module WebAdministration
+    Get-ChildItem IIS:\AppPools | Where-Object { $_.Name -like "Outsystem*" } | ForEach-Object {
+        $_ | Recycle-WebAppPool
+        Write-Output "Recycled IIS application pool: $($_.Name)"
+    }
+}
+elseif ($processList -contains $TopProcess.InstanceName) {
+    Write-Output "$($TopProcess.InstanceName) is running, wait until it's complete"
+}
+else {
+    # Print the message
+    Write-Output "Looks like a customer application is running, fetching historical data. Redirecting to get_monsys_report.py"
+
+    # Call the Python script get_monsys_report.py
+    # &amp; python get_monsys_report.py
+} [ps1] [... 2 steps]</description>
+    <argstring />
+    <serverUUID>73fcfedf-dd61-435c-bcca-75380aaaf998</serverUUID>
+    <failedNodes>
+      <node name='E95Y-LT16CR' />
+      <node name='E95Y-DV16CS' />
+    </failedNodes>
+  </execution>
+  <execution id='772' href='https://rundeck.outsystems.com:443/api/45/execution/772' permalink='https://rundeck.outsystems.com:443/project/Test_RB/execution/show/772' status='succeeded' project='Test_RB'>
+    <user>Shashank K B</user>
+    <date-started unixtime='1689059153872'>2023-07-11T07:05:53Z</date-started>
+    <date-ended unixtime='1689059155578'>2023-07-11T07:05:55Z</date-ended>
+    <job id='2c732906-22b8-4cac-ad85-262bd00131bb' averageDuration='1643' href='https://rundeck.outsystems.com:443/api/45/job/2c732906-22b8-4cac-ad85-262bd00131bb' permalink='https://rundeck.outsystems.com:443/project/Test_RB/job/show/2c732906-22b8-4cac-ad85-262bd00131bb'>
+      <name>Python local</name>
+      <group></group>
+      <project>Test_RB</project>
+      <description></description>
+    </job>
+    <description>pythonfrom elasticsearch import Elasticsearch
+
+# Elasticsearch URL and API key
+elasticsearch_url = "https://8ee67b744781459796846ac0d9f2ff5c.eu-west-1.aws.found.io:9243/"
+api_key = "TzNXRUM0Z0JwN0dSRzJYVjd2SEI6TGxPaVBTaWtRVFNXSjJzQXRwejZZUQ=="  # Replace with API key
+
+# Connect to Elasticsearch
+es = Elasticsearch(
+    [elasticsearch_url],
+    headers={"Authorization": f"ApiKey {api_key}"}
+)
+
+# Define the query
+query = {
+    "aggs": {
+        "by_machine_orn": {
+            "terms": {
+                "field": "agent.hostname",
+                "size": 1
+            },
+            "aggs": {
+                "by_date": {
+                    "date_histogram": {
+                        "field": "@timestamp",
+                        "fixed_interval": "2h"
+                    },
+                    "aggs": {
+                        "cpu_usage": {
+                            "avg": {
+                                "field": "system.cpu.total.norm.pct"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "size": 0,
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "range": {
+                        "@timestamp": {
+                            "format": "strict_date_optional_time",
+                            "gte": "now-1d",
+                            "lte": "now"
+                        }
+                    }
+                },
+                {
+                    "term": {
+                        "outsystems.machine_type": "Platform FrontEnd"
+                    }
+                },
+                {
+                    "terms": {
+                        "metricset.name": ["cpu"]
+                    }
+                },
+                {
+                    "term": {
+                        "agent.hostname": "E3S9P-PR54VG"
+                    }
+                }
+            ]
+        }
+    }
+}
+
+# Execute the query
+response = es.search(index="monsys-prd-metrics-os-*", body=query)
+
+# Process the response
+# Access the aggregations, hits, or any other data from the response
+aggregations = response["aggregations"]
+buckets = aggregations["by_machine_orn"]["buckets"]
+
+# Calculate average CPU usage and convert to percentage
+cpu_sum = 0
+count = 0
+
+for bucket in buckets:
+    by_date_buckets = bucket["by_date"]["buckets"]
+    for by_date_bucket in by_date_buckets:
+        cpu_value = by_date_bucket["cpu_usage"]["value"]
+        cpu_sum += cpu_value
+        count += 1
+
+if count &gt; 0:
+    average_cpu_usage = cpu_sum / count
+else:
+    average_cpu_usage = 0
+
+average_cpu_percentage = average_cpu_usage * 100
+
+# Print the average CPU percentage
+print(f"Average CPU usage: {average_cpu_percentage}%")
+
+# Check if average CPU is more than 80%
+if average_cpu_percentage &gt; 80:
+    print("Average CPU is more than 80%, you may have to look at customer process consuming high CPU and inform the customer about the same")</description>
+    <argstring />
+    <serverUUID>73fcfedf-dd61-435c-bcca-75380aaaf998</serverUUID>
+    <successfulNodes>
+      <node name='ip-10-19-0-9.ec2.internal' />
+    </successfulNodes>
+  </execution>
+  <execution id='771' href='https://rundeck.outsystems.com:443/api/45/execution/771' permalink='https://rundeck.outsystems.com:443/project/Test_RB/execution/show/771' status='failed' project='Test_RB'>
+    <user>Shashank K B</user>
+    <date-started unixtime='1689058916147'>2023-07-11T07:01:56Z</date-started>
+    <date-ended unixtime='1689058916936'>2023-07-11T07:01:56Z</date-ended>
+    <job id='2c732906-22b8-4cac-ad85-262bd00131bb' averageDuration='1643' href='https://rundeck.outsystems.com:443/api/45/job/2c732906-22b8-4cac-ad85-262bd00131bb' permalink='https://rundeck.outsystems.com:443/project/Test_RB/job/show/2c732906-22b8-4cac-ad85-262bd00131bb'>
+      <name>Python local</name>
+      <group></group>
+      <project>Test_RB</project>
+      <description></description>
+    </job>
+    <description>pythonfrom elasticsearch import Elasticsearch
+
+# Elasticsearch URL and API key
+elasticsearch_url = "https://8ee67b744781459796846ac0d9f2ff5c.eu-west-1.aws.found.io:9243/"
+api_key = "TzNXRUM0Z0JwN0dSRzJYVjd2SEI6TGxPaVBTaWtRVFNXSjJzQXRwejZZUQ=="  # Replace with API key
+
+# Connect to Elasticsearch
+es = Elasticsearch(
+    [elasticsearch_url],
+    headers={"Authorization": f"ApiKey {api_key}"}
+)
+
+# Define the query
+query = {
+    "aggs": {
+        "by_machine_orn": {
+            "terms": {
+                "field": "agent.hostname",
+                "size": 1
+            },
+            "aggs": {
+                "by_date": {
+                    "date_histogram": {
+                        "field": "@timestamp",
+                        "fixed_interval": "2h"
+                    },
+                    "aggs": {
+                        "cpu_usage": {
+                            "avg": {
+                                "field": "system.cpu.total.norm.pct"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "size": 0,
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "range": {
+                        "@timestamp": {
+                            "format": "strict_date_optional_time",
+                            "gte": "now-1d",
+                            "lte": "now"
+                        }
+                    }
+                },
+                {
+                    "term": {
+                        "outsystems.machine_type": "Platform FrontEnd"
+                    }
+                },
+                {
+                    "terms": {
+                        "metricset.name": ["cpu"]
+                    }
+                },
+                {
+                    "term": {
+                        "agent.hostname": "E3S9P-PR54VG"
+                    }
+                }
+            ]
+        }
+    }
+}
+
+# Execute the query
+response = es.search(index="monsys-prd-metrics-os-*", body=query)
+
+# Process the response
+# Access the aggregations, hits, or any other data from the response
+aggregations = response["aggregations"]
+buckets = aggregations["by_machine_orn"]["buckets"]
+
+# Calculate average CPU usage and convert to percentage
+cpu_sum = 0
+count = 0
+
+for bucket in buckets:
+    by_date_buckets = bucket["by_date"]["buckets"]
+    for by_date_bucket in by_date_buckets:
+        cpu_value = by_date_bucket["cpu_usage"]["value"]
+        cpu_sum += cpu_value
+        count += 1
+
+if count &gt; 0:
+    average_cpu_usage = cpu_sum / count
+else:
+    average_cpu_usage = 0
+
+average_cpu_percentage = average_cpu_usage * 100
+
+# Print the average CPU percentage
+print(f"Average CPU usage: {average_cpu_percentage}%")
+
+# Check if average CPU is more than 80%
+if average_cpu_percentage &gt; 80:
+    print("Average CPU is more than 80%, you may have to look at customer process consuming high CPU and inform the customer about the same")</description>
+    <argstring />
+    <serverUUID>73fcfedf-dd61-435c-bcca-75380aaaf998</serverUUID>
+    <failedNodes>
+      <node name='ip-10-19-0-9.ec2.internal' />
+    </failedNodes>
+  </execution>
+  <execution id='770' href='https://rundeck.outsystems.com:443/api/45/execution/770' permalink='https://rundeck.outsystems.com:443/project/Test_RB/execution/show/770' status='failed' project='Test_RB'>
+    <user>Shashank K B</user>
+    <date-started unixtime='1689057803798'>2023-07-11T06:43:23Z</date-started>
+    <date-ended unixtime='1689057875333'>2023-07-11T06:44:35Z</date-ended>
+    <job id='3b7a2013-3995-4c93-ae11-9e6f740d4a49' averageDuration='37384' href='https://rundeck.outsystems.com:443/api/45/job/3b7a2013-3995-4c93-ae11-9e6f740d4a49' permalink='https://rundeck.outsystems.com:443/project/Test_RB/job/show/3b7a2013-3995-4c93-ae11-9e6f740d4a49'>
+      <name>High CPU - mitigation and analysis</name>
+      <group></group>
+      <project>Test_RB</project>
+      <description></description>
+    </job>
+    <description>$UtilizationSum = 0
+
+for ($i = 1; $i -le 10; $i++) {
+    $CPU = Get-CimInstance win32_processor
+    $UtilizationSum += $CPU.LoadPercentage
+    Start-Sleep -Seconds 1
+}
+
+$AverageUtilization = $UtilizationSum / 10
+
+Write-Output "Current average CPU utilization is: $($AverageUtilization)%"
+
+# Get top 5 processes consuming highest CPU resources
+$TopProcesses = Get-Counter '\Process(*)\% Processor Time' -ErrorAction SilentlyContinue |
+    Select-Object -ExpandProperty CounterSamples |
+    Select-Object -Property InstanceName, CookedValue |
+    Sort-Object -Property CookedValue -Descending |
+    Select-Object -First 5
+
+# Get the total CPU usage
+$totalCpu = $TopProcesses | Where-Object { $_.InstanceName -eq "_total" } | ForEach-Object { $_.CookedValue }
+
+# Get the process with highest CPU usage (excluding _total and idle)
+$TopProcess = $TopProcesses | Where-Object { $_.InstanceName -ne "_total" -and $_.InstanceName -ne "idle" } | Select-Object -First 1
+
+# Calculate the percentage of total CPU usage for the top process
+$TopProcessCpuPercentage = $TopProcess.CookedValue / $totalCpu * 100
+
+# Print the process with highest CPU usage
+Write-Output "Highest consuming CPU is $($TopProcess.InstanceName) with $($TopProcessCpuPercentage)% of total CPU, you might need to optimize this process."
+
+# Process names to wait for completion
+$processList = @("MsMpEng", "process_name")
+
+# Take actions based on the process consuming the highest CPU
+if ($TopProcess.InstanceName -eq "w3wp") { # IIS Worker Process
+    # Recycle IIS application pools with name starting Outsystem
+    Import-Module WebAdministration
+    Get-ChildItem IIS:\AppPools | Where-Object { $_.Name -like "Outsystem*" } | ForEach-Object {
+        $_ | Recycle-WebAppPool
+        Write-Output "Recycled IIS application pool: $($_.Name)"
+    }
+}
+elseif ($processList -contains $TopProcess.InstanceName) {
+    Write-Output "$($TopProcess.InstanceName) is running, wait until it's complete"
+}
+else {
+    # Print the message
+    Write-Output "Looks like a customer application is running, fetching historical data. Redirecting to get_monsys_report.py"
+
+    # Call the Python script get_monsys_report.py
+    # &amp; python get_monsys_report.py
+} [ps1] [... 2 steps]</description>
+    <argstring />
+    <serverUUID>73fcfedf-dd61-435c-bcca-75380aaaf998</serverUUID>
+    <failedNodes>
+      <node name='E95Y-LT16CR' />
+      <node name='E95Y-DV16CS' />
+    </failedNodes>
+  </execution>
+  <execution id='769' href='https://rundeck.outsystems.com:443/api/45/execution/769' permalink='https://rundeck.outsystems.com:443/project/Test_RB/execution/show/769' status='failed' project='Test_RB'>
+    <user>Shashank K B</user>
+    <date-started unixtime='1689057364607'>2023-07-11T06:36:04Z</date-started>
+    <date-ended unixtime='1689057639056'>2023-07-11T06:40:39Z</date-ended>
+    <job id='3b7a2013-3995-4c93-ae11-9e6f740d4a49' averageDuration='37384' href='https://rundeck.outsystems.com:443/api/45/job/3b7a2013-3995-4c93-ae11-9e6f740d4a49' permalink='https://rundeck.outsystems.com:443/project/Test_RB/job/show/3b7a2013-3995-4c93-ae11-9e6f740d4a49'>
+      <name>High CPU - mitigation and analysis</name>
+      <group></group>
+      <project>Test_RB</project>
+      <description></description>
+    </job>
+    <description>$UtilizationSum = 0
+
+for ($i = 1; $i -le 10; $i++) {
+    $CPU = Get-CimInstance win32_processor
+    $UtilizationSum += $CPU.LoadPercentage
+    Start-Sleep -Seconds 1
+}
+
+$AverageUtilization = $UtilizationSum / 10
+
+Write-Output "Current average CPU utilization is: $($AverageUtilization)%"
+
+# Get top 5 processes consuming highest CPU resources
+$TopProcesses = Get-Counter '\Process(*)\% Processor Time' -ErrorAction SilentlyContinue |
+    Select-Object -ExpandProperty CounterSamples |
+    Select-Object -Property InstanceName, CookedValue |
+    Sort-Object -Property CookedValue -Descending |
+    Select-Object -First 5
+
+# Get the total CPU usage
+$totalCpu = $TopProcesses | Where-Object { $_.InstanceName -eq "_total" } | ForEach-Object { $_.CookedValue }
+
+# Get the process with highest CPU usage (excluding _total and idle)
+$TopProcess = $TopProcesses | Where-Object { $_.InstanceName -ne "_total" -and $_.InstanceName -ne "idle" } | Select-Object -First 1
+
+# Calculate the percentage of total CPU usage for the top process
+$TopProcessCpuPercentage = $TopProcess.CookedValue / $totalCpu * 100
+
+# Print the process with highest CPU usage
+Write-Output "Highest consuming CPU is $($TopProcess.InstanceName) with $($TopProcessCpuPercentage)% of total CPU, you might need to optimize this process."
+
+# Process names to wait for completion
+$processList = @("MsMpEng", "process_name")
+
+# Take actions based on the process consuming the highest CPU
+if ($TopProcess.InstanceName -eq "w3wp") { # IIS Worker Process
+    # Recycle IIS application pools with name starting Outsystem
+    Import-Module WebAdministration
+    Get-ChildItem IIS:\AppPools | Where-Object { $_.Name -like "Outsystem*" } | ForEach-Object {
+        $_ | Recycle-WebAppPool
+        Write-Output "Recycled IIS application pool: $($_.Name)"
+    }
+}
+elseif ($processList -contains $TopProcess.InstanceName) {
+    Write-Output "$($TopProcess.InstanceName) is running, wait until it's complete"
+}
+else {
+    # Print the message
+    Write-Output "Looks like a customer application is running, fetching historical data. Redirecting to get_monsys_report.py"
+
+    # Call the Python script get_monsys_report.py
+    # &amp; python get_monsys_report.py
+} [ps1] [... 2 steps]</description>
+    <argstring />
+    <serverUUID>73fcfedf-dd61-435c-bcca-75380aaaf998</serverUUID>
+    <failedNodes>
+      <node name='E95Y-LT16CR' />
+      <node name='E95Y-DV16CS' />
+    </failedNodes>
+  </execution>
+  <execution id='768' href='https://rundeck.outsystems.com:443/api/45/execution/768' permalink='https://rundeck.outsystems.com:443/project/Test_RB/execution/show/768' status='failed' project='Test_RB'>
+    <user>Shashank K B</user>
+    <date-started unixtime='1689056526045'>2023-07-11T06:22:06Z</date-started>
+    <date-ended unixtime='1689056560610'>2023-07-11T06:22:40Z</date-ended>
+    <job id='3b7a2013-3995-4c93-ae11-9e6f740d4a49' averageDuration='37384' href='https://rundeck.outsystems.com:443/api/45/job/3b7a2013-3995-4c93-ae11-9e6f740d4a49' permalink='https://rundeck.outsystems.com:443/project/Test_RB/job/show/3b7a2013-3995-4c93-ae11-9e6f740d4a49'>
+      <name>High CPU - mitigation and analysis</name>
+      <group></group>
+      <project>Test_RB</project>
+      <description></description>
+    </job>
+    <description>$UtilizationSum = 0
+
+for ($i = 1; $i -le 10; $i++) {
+    $CPU = Get-CimInstance win32_processor
+    $UtilizationSum += $CPU.LoadPercentage
+    Start-Sleep -Seconds 1
+}
+
+$AverageUtilization = $UtilizationSum / 10
+
+Write-Output "Current average CPU utilization is: $($AverageUtilization)%"
+
+# Get top 5 processes consuming highest CPU resources
+$TopProcesses = Get-Counter '\Process(*)\% Processor Time' -ErrorAction SilentlyContinue |
+    Select-Object -ExpandProperty CounterSamples |
+    Select-Object -Property InstanceName, CookedValue |
+    Sort-Object -Property CookedValue -Descending |
+    Select-Object -First 5
+
+# Get the total CPU usage
+$totalCpu = $TopProcesses | Where-Object { $_.InstanceName -eq "_total" } | ForEach-Object { $_.CookedValue }
+
+# Get the process with highest CPU usage (excluding _total and idle)
+$TopProcess = $TopProcesses | Where-Object { $_.InstanceName -ne "_total" -and $_.InstanceName -ne "idle" } | Select-Object -First 1
+
+# Calculate the percentage of total CPU usage for the top process
+$TopProcessCpuPercentage = $TopProcess.CookedValue / $totalCpu * 100
+
+# Print the process with highest CPU usage
+Write-Output "Highest consuming CPU is $($TopProcess.InstanceName) with $($TopProcessCpuPercentage)% of total CPU, you might need to optimize this process."
+
+# Process names to wait for completion
+$processList = @("MsMpEng", "process_name")
+
+# Take actions based on the process consuming the highest CPU
+if ($TopProcess.InstanceName -eq "w3wp") { # IIS Worker Process
+    # Recycle IIS application pools with name starting Outsystem
+    Import-Module WebAdministration
+    Get-ChildItem IIS:\AppPools | Where-Object { $_.Name -like "Outsystem*" } | ForEach-Object {
+        $_ | Recycle-WebAppPool
+        Write-Output "Recycled IIS application pool: $($_.Name)"
+    }
+}
+elseif ($processList -contains $TopProcess.InstanceName) {
+    Write-Output "$($TopProcess.InstanceName) is running, wait until it's complete"
+}
+else {
+    # Print the message
+    Write-Output "Looks like a customer application is running, fetching historical data. Redirecting to get_monsys_report.py"
+
+    # Call the Python script get_monsys_report.py
+    # &amp; python get_monsys_report.py
+} [ps1] [... 2 steps]</description>
+    <argstring />
+    <serverUUID>73fcfedf-dd61-435c-bcca-75380aaaf998</serverUUID>
+    <failedNodes>
+      <node name='E95Y-DV16CS' />
+    </failedNodes>
+  </execution>
+</executions>
